@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+.header{
+  position:sticky;border: 0; top: 0;z-index: 2; background: white;"
+
+}
+    
+    .slider {
+      position: relative;
+      max-width: 100%;
+      max-height: 450px;
+      overflow: hidden;
+    }
+    .slider-inner {
+      width: 300%;
+      height: 100%;
+      display: flex;
+      animation: slide 15s infinite;
+    }
+    .slide {
+      width: 33.33%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0%, 30% { transform: translateX(0); }
+      33%, 63% { transform: translateX(-33.33%); }
+      66%, 97% { transform: translateX(-66.66%); }
+      100% { transform: translateX(0); }
+    }
+    .nav-item {
+      margin-right: 15px;
+    }
+    .nav_options>a{
+      color: black;
+    }
+ 
+    .nav_options>a:hover{
+     color: blue;
+    }
+    .hero-section {
+      position: relative;
+    }
+    .flight-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.5);
+      padding: 15px;
+      color: white;
+    }
+    .search-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: -50px;
+      position: relative;
+      z-index: 1;
+    }
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .search-field {
+      flex: 1;
+      min-width: 200px;
+    }
+    .promo-banner {
+      background-color: #0d6efd;
+      color: white;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    .destination-card {
+      position: relative;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .destination-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: filter 0.3s;
+    }
+    .destination-card:hover img {
+      filter: brightness(70%);
+    }
+    .destination-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 15px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    .destination-card:hover .destination-info {
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .search-row {
+        flex-direction: column;
+      }
+      .search-field {
+        width: 100%;
+      }
+      .flight-nav {
+        position: static;
+        background-color: transparent;
+        color: black;
+      }
+      .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
+    .clip-bytton
+    {
+      
+      justify-self: center;
+      clip-path: polygon(10% 0%, 80% 0%, 70% 70%, 0% 100%);
+background: linear-gradient(to right,blue 0%, blue 23%, #6c757d 4.33%,#6c757d 100%);
+z-index: 100px;
+font-weight: bold;
+font-family: sans-serif;
+transform: rotate(1deg);
+     margin-left: 20%;
+     left: 0;
+     right: 0;
+      position: absolute;
+     margin-top: 3%;
+     border-radius: 20% 20% 20px 20%;
+      z-index: -1;
+    }
+    .clip-bytton>button{
+      margin-left: 20px;
+      color: white;
+      
+    }
+    .last-img-div{
+      caption-side: bottom;
+    }
+    .btn-p-div{
+           justify-self: center;
+           bottom: 22%;
+           color: white;
+           position: relative;
+           z-index: 2;
+           border-radius: 30% 30% 30% 30%;
+           text-align: center;
+           margin-left: 100px;
+           filter: blur(1px);
+    }
+    .btn-p{
+      color: white;
+      font-weight: bold;
+    }
+.main-container
+{
+  background-color: darkblue;
+
+  
+}
+.mk{
+  max-height: 1000px;
+}
+.main>ul,.main>ul>li>a{
+  list-style: none;
+  color: white;
+  line-height: 40px;
+  text-decoration: none;
+   
+}
+.last-link>a
+{
+  color: white;
+  text-decoration: none;
+}
+.last-link>a:hover{
+  transform: translateY(-5px);
+  text-decoration: underline;
+  color:  #ace5ee;
+}
+.myng{
+  background-image:url(https://tse1.mm.bing.net/th/id/OIP.v4fu3bY8o1eZoGFIEP4wdQHaHa?pid=Api&P=0&h=180) ;
+}
+.f3,.f5:hover{
+  background: lightgray !important;
+  color: white;
+}
+.in:hover{
+  border: 1px solid lightgray !important;
+
+}
+.nav-u>li>span:hover{
+border-bottom:2px solid ;
+}
+.hide:active{
+  visibility: hidden !important;
+  overflow: hidden;
+  position: absolute;
+  transition: 1s;
+}
+
+
+@media (max-width: 767px) {
+
+    .main-container .main {
+        text-align: center;
+    }
+
+    .main-container ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .main-container .last {
+        text-align: center;
+    }
+
+    .main-container .flex-div {
+        justify-content: center;
+    }
+
+    .last-link {
+        justify-content: center;
+    }
+
+    .btn-p-div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+  </style>
+
+
+
+
+</head>
+<body>
+  <!-- Header -->
+
+  <!--<div class="col-12 hide" style="height:20px;width:100%;background: skyblue;">  
+    <div class="ms-2 gap-2 d-flex hide" style="flex-wrap:wrap;">
+      <p><i class="fa fa-bell ms-2" aria-hidden="true"></i>  proident, sunt in culpa qui officia deserunt mollit anim id    
+         est   laborum.hu</p>  
+            <ul class="nav nav-bar d-flex" style="margin-left:57% ; flex-wrap: wrap;">
+                <li class="nav-item close">View all</li>
+                <li class="nav-item"><a href="#a" class="close"> X</a></li>
+           </ul>
+     </div>
+     </div>
+   </div>
+  </div>-->
+  <header class="container-fluid py-3 header">
+    <div class="row align-items-center">
+      <div class="col-md-2 d-flex">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/mh-logo-light-theme-142x35px.png" alt="Logo" class="img-fluid" style="height: 35px;">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/oneworld-logo-light-theme-1.png" alt="Oneworld" class="img-fluid ms-2" style="height: 25px;">
+
+        <div class="d-block d-md-none w-100"style="flex-direction: column; position: relative;">
+          <button class="btn mybg" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#collapseExample" 
+                aria-expanded="false" 
+                aria-controls="collapseExample"type="image">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.v4fu3bY8o1eZoGFIEP4wdQHaHa?pid=Api&P=0&h=180" style="height:30px;width:30px;"class="ms-5">
+        </button>
+    </p>
+    <div class="collapse w-100 " id="collapseExample"style="z-index: 1;border: none;">
+        <div class="card card-body w-100"style="background: transparent;left: auto !important;right: 0 !important;border: none;">
+                <nav class=" justify-content-end nav_options">
+          <a class="nav-link w-100 fs-3 " href="#"style="background: #00FFFF;color: white;">✈️Plan trip</a>
+          <a class="nav-link fs-3" href="#"style="background: #00ffff ;color: white;">🧳Travel info</a>
+          <a class="nav-link fs-3" href="#"style="background: #ff00ff ;color: white;">❄️Experience</a>
+          <a class="nav-link fs-3" href="#"style="background: #ffa500;color: white;">🎉Promotions</a>
+          <a class="nav-link fs-5 " href="#"style="background: #ffa07a ;color: white;">💳Travel services</a>
+          <a class="nav-link fs-5" href="#"style="background: #adff2f ;color: white;">🔐Enrich loyalty</a>
+        </nav>
+        </div>
+    </div>
+  </div>
+</div>
+      <div class="col-md-7 d-none d-md-block d-flex">
+        <nav class="nav justify-content-end nav_options d-flex">
+          <a class="nav-link" href="#">Plan trip</a>
+          <a class="nav-link" href="#">Travel info</a>
+          <a class="nav-link" href="#">Experience</a>
+          <a class="nav-link" href="#">Promotions</a>
+          <a class="nav-link" href="#">Travel services</a>
+          <a class="nav-link" href="#">Enrich loyalty</a>
+        </nav>
+      </div>
+      <div class="col-md-3" style="justify-self:end;justify-items: end; ">
+        <ul class="nav nav-bar gap-3 d-flex nav-u flex-wrap">
+        <li>
+          <img src="https://up.yimg.com/ib/th/id/OIP.YHufaYYtdq8EtHQRPAx_9QHaE8?pid=Api&rs=1&c=1&qlt=95&w=148&h=99" style="height:20px; width: 20px;border-radius:50% ;"class="mb-1 img-fluid" >
+        <span>IND</span>
+        <li>
+          <li class="text-muted">
+            <i class="fa-solid fa-question"></i>
+            <span> AskMH </span>
+          </li>
+          <li class="text-muted">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span> Search </span>
+          </li>
+          <li><i class="fa fa-user text-muted" aria-hidden="true"></i></li>
+
+      </div>
+    </div>
+  </header>
+
+
+<!-- CSS-only Image Slider -->
+  <div class="slider">
+    <div class="slider-inner">
+      <div class="slide">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/home/hero-banner/mhhospitality/6-24/en_1920x600.jpg" alt="Flight 1"class="img-fluid mw-100">
+      </div>
+      <div class="slide">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/plan-trip/destinations/india/trv/mashead/1920x600-cta.jpg" alt="Flight 2"class="img-fluid mw-100">
+      </div>
+      <div class="slide">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/promotions/time-for-premium-escapades/1920x600_CTA.jpg" alt="Flight 3"class="img-fluid mw-100">
+      </div>
+       <div class="slide">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/promotions/time-for-premium-escapades/1920x600_CTA.jpg" alt="Flight 3"class="img-fluid mw-100">
+      </div>
+      <div class="slide">
+        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/promotions/inspiring-scenery-awaits-in-australia/1920x600_CTA.jpg" alt="Flight 3" class="img-fluid mw-100">
+
+      </div>
+    </div>
+    
+    <div class="container flight-nav">
+      <ul class="nav nav-tabs border-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Book a flight</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="#">Flight + Hotel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">My booking</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">MHupgrade</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Check-in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Flight status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Flight schedule</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="container search-container">
+    <div class="row mb-3">
+      <div class="col-12">
+        <h4>Look a flight</h4>
+      </div>
+      <div class="col-12">
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-outline-primary">Book a flight</button>
+          <button class="btn btn-outline-primary">Multi-city</button>
+          <button class="btn btn-outline-primary">Redeem Flight</button>
+          <button class="btn btn-outline-primary">Round the world</button>
+          <button class="btn btn-outline-primary">Explore our map</button>
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="search-row">
+        <div class="search-field">
+          <label class="form-label">From</label>
+          <input type="text" class="form-control" placeholder="City or Airport">
+        </div>
+        <div class="search-field">
+          <label class="form-label">To</label>
+          <input type="text" class="form-control" placeholder="City or Airport">
+        </div>
+        <div class="search-field">
+          <label class="form-label">Depart</label>
+          <input type="date" class="form-control">
+        </div>
+        <div class="search-field">
+          <label class="form-label">Return</label>
+          <input type="date" class="form-control">
+        </div>
+
+        <div class="search-field">
+          <label class="form-label">Passengers and cabin class *</label>
+          <select class="form-select">
+            <option>1 Adult, Economy</option>
+            <option>2 Adults, Economy</option>
+            <option>1 Adult, Business</option>
+            <option>2 Adults, Business</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label class="form-label">Promo code</label>
+          <input type="text" class="form-control" placeholder="Promo code">
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-primary">Find me a flight now</button>
+
+      </div>
+
+<!--new tap transtale-->
+  
+                              <div class="w-50 d-flex" style="flex-wrap:wrap;">
+                                      <div class="border d-flex w-100 p-2 bg-light" style="border-radius: 30px;">
+                                    <input type="" name="" placeholder="Form" class="form-control bg-light p-3 in"style="border: none; border-radius:50px 0 0 50px ;">
+
+                                    <button class="btn-primary bg-primary border">
+                                      <svg  data-v-5d367402="" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fill-white m-auto"><path d="M488 344H79.24l74.29-79.63C162.6 254.7 162.1 239.5 152.4 230.5C142.7 221.4 127.5 221.9 118.5 231.6l-112 120c-8.625 9.219-8.625 23.53 0 32.75l112 120C123.2 509.4 129.6 512 136 512c5.875 0 11.75-2.125 16.38-6.469c9.688-9.031 10.22-24.22 1.156-33.91L79.24 392H488c13.25 0 24-10.75 24-24S501.3 344 488 344zM24 168h408.8l-74.29 79.63c-9.062 9.688-8.531 24.88 1.156 33.91c9.656 9.094 24.88 8.562 33.91-1.156l112-120c8.625-9.219 8.625-23.53 0-32.75l-112-120C388.8 2.562 382.4 0 376 0c-5.875 0-11.75 2.125-16.38 6.469c-9.688 9.031-10.22 24.22-1.156 33.91L432.8 120H24C10.75 120 0 130.8 0 144S10.75 168 24 168z"></path></svg>
+                                    </button>
+                                    <input type="" name="" placeholder="To" class="form-control bg-light p-3 in" style="border:none;border-radius:0px 50px 50px 0px ;">
+                                  </div>
+</div>
+
+
+
+    </form>
+    
+
+    <div class="promo-banner">
+      Did you know? Enrich members will get extra 5% off on flight purchase. Login now to get better fare.
+    </div>
+  </div>
+
+  <!-- Destinations Section -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        <h2>Explore our top destinations</h2>
+        <p>From Kuala Lumpur</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/5458393/pexels-photo-5458393.jpeg" alt="London">
+          <div class="destination-info">
+            <h5>London</h5>
+            <p>Economy from</p>
+            <h5>MYR 4022</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" alt="Paris">
+          <div class="destination-info">
+            <h5>Paris</h5>
+            <p>Economy from</p>
+            <h5>MYR 3850</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/2614818/pexels-photo-2614818.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tokyo">
+
+
+<div class="destination-info">
+            <h5>Tokyo</h5>
+            <p>Economy from</p>
+            <h5>MYR 2450</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=600" alt="nwy york">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+
+                 <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/1822605/pexels-photo-1822605.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Japane">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/62348/pexels-photo-62348.jpeg?auto=compress&cs=tinysrgb&w=600" alt="india">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/1663383/pexels-photo-1663383.jpeg?auto=compress&cs=tinysrgb&w=600" alt="korea">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/2867769/pexels-photo-2867769.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sydney">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.pexels.com/photos/36478/amazing-beautiful-beauty-blue.jpg?auto=compress&cs=tinysrgb&w=600" alt="Sydney">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://cdn.pixabay.com/photo/2025/05/16/09/11/meiji-temple-9603402_1280.jpg" alt="Sydney">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://cdn.pixabay.com/photo/2016/02/14/20/52/picture-1200223_1280.jpg" alt="Sydney">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+          </div>
+        </div>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <div class="destination-card">
+          <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995" alt="Sydney">
+          <div class="destination-info">
+            <h5>Sydney</h5>
+            <p>Economy from</p>
+            <h5>MYR 2890</h5>
+            <button class="btn btn-secondary" style="background: blue;">helow</button>
+            <button  class="btn btn-secondary w-25">word</button>
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+
+    </div>
+  </div>
+
+<div class="container" style="margin-bottom: 0;">
+     <div class="row"style="margin-bottom: 0;">
+      <div class="col-12 text-center mb-4"style="margin-bottom: 0;">
+        <button class="btn text-light ps-5 pe-5 pt-2 pb-2" style="border-radius:40px 40px 40px 40px;background: blue;">View all</button>
+        <h1 class="mt-5 " style="font-weight: bolder;">Experience the best of Malaysian Hospitality</h1>
+      </div>
+    </div>
+  </div>
+                        <div class="container"style="margin-bottom: 0;">
+                          <div class="row p-0 m-0 gap-0"  style="border: 0.5px solid gray;border-radius: 100px 100px 100px 100px;margin-bottom: 0; ">
+                            <div class="col-md-4">
+                             <div class="Hospitality mt-2"   >
+                                  <img src="https://tse3.mm.bing.net/th?id=OIP.t4AnJugUtL_VYQIUxMFVrQHaEK&pid=Api&P=0&h=180" class="ms-2 img-fluid w-100 h-100 p-5 m-0">
+                             </div>
+                            </div>
+                             <div class="col-md-4" >
+                             <div class="Hospitality mt-2" >
+                                  <img src="https://tse3.mm.bing.net/th?id=OIP._WqwXqfm9C0QXRr13FH5tQHaEK&pid=Api&P=0&h=180"class="ms-2 img-fluid w-100 h-100 p-5 m-0">
+                             </div>
+                            </div>
+                             <div class="col-md-4 ">
+                             <div class="Hospitality mt-2"   >
+                                  <img src="https://tse3.mm.bing.net/th?id=OIP.j83LBXN7lSMu5iIf4CKmsgHaEK&pid=Api&P=0&h=180"class="ms-2 img-fluid w-100 h-100 p-5 m-0">
+                                  
+                             </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                          <div class="container-fluid " style="margin-top: 0;">
+                            <div class="row mt">
+                              <div class="col-12">
+                                <div class="clip-bytton p-3 w-50 d-md-flex d-none"style="flex-wrap: wrap;">
+                                      <button class="btn btn">Mobile app</button>
+                                      <button class="btn btn">Enrich loyalty</button>
+                                      <button class="btn btn">Student programme</button>  
+                                </div>
+                                <div class="last-img-div mt-5">
+                                <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/preview/homepage-revamp/Mobile_App_1920x500.jpg" class="last-img img-fluid mt-5"style="margin-bottom: 0;">
+                                
+                              </div>
+                              
+                                 <div class="btn-p-div border" style="width:180px;">
+                                  <button class="btn btn-p">leran more</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="container-fluid main-container" style="margin-top: 0;">
+                            <div class="row pb-5">
+                                <div class="col-md-2 mk">
+                                    <div class="main">
+                                        <ul>
+                                        <li><a href="#">Other offerings</a></li>
+                                        <li><a href="#">MHplus</a></li>
+                                        <li><a href="#">Temptations</a></li>
+                                        <li><a href="#">Government Travel</a></li>
+                                        <li><a href="#">MHshuttle</a></li>
+                                        <li><a href="#">MHinsure</a></li>
+                                        <li><a href="#">More</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="last">
+                                        <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/exercise-your-rights-new.svg" style="margin-top:40%;">
+                                        <div class="flex-div d-flex gap-2 flex-wrap">
+                                          <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/maswings-2.png"class="img-fluid w-25">
+                                          <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/firefly-2.png"class="img-fluid w-25">
+                                          <img src="https://www.malaysiaairlines.com/content/dam/mh/my/en/header-footer/amal-2.png" class="img-fluid w-25">
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                                <div class="col-md-2">
+                                    <div class="main">
+                                      <ul>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Malaysia Aviation Group</a></li>
+                                        <li><a href="#">Malaysia Airlines Affiliate</a></li>
+                                        <li><a href="#">Corporate Governance</a></li>
+                                        <li><a href="#">Leadership</a></li>
+                                        <li><a href="#">Awards</a></li>
+                                        <li><a href="#">Join us</a></li>
+                                        <li><a href="#">Invitation to tender</a></li>
+                                        <li><a href="#">More</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                               
+                             
+                        
+                                <div class="col-md-2" >
+                                    <div class="main">
+                                      <ul>
+                                        <li><a href="#">MH Media Centre</a></li>
+                                        <li><a href="#">News releases</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                               
+                             
+
+                        
+                                <div class="col-sm-6" style="text-align: center; ">
+                                    <div class="main">
+                                      <ul>
+                                          <li><a href="#">AskMH</a></li>
+                                            <li><a href="#">FAQ</a></li>
+                                            <li><a href="#">Self-service Support</a></li>
+                                            <li><a href="#">Contact Details</a></li>
+                                            <li><a href="#">Feedback</a></li>
+                                      </ul>
+                                    </div>
+                                    <div style="justify-self: center;">
+                                        <h6 style="text-align: center; color: white;font-weight: bold;font-family: sans-serif,fantasy; ">CONNECT WITH US</h6>
+                                    </div>
+                                    <div class="d-flex gap-3 mt-5" style="justify-content: right;flex-wrap: wrap; ">
+                                   
+                                     <img src=" https://play-lh.googleusercontent.com/DkTxmSymkcxHiady0xd_JsIxLLg0f1ducCtMTpO8El-kTW7VF1gCC6ZzhgTgTGwEqqI=w480-h960-rw "class="img-fluid" style="height:30px;width: 30px; mix-blend-mode: luminosity; ">
+                                     <img src="https://s.yimg.com/fz/api/res/1.2/xmgYi4M01WDngH1olFyBvw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI0MDtxPTgwO3c9MjQw/https://s.yimg.com/zb/imgv1/576ce588-66b3-3980-8984-71cffd276a9c/t_500x300"class="img-fluid" style="height:30px;width: 30px; mix-blend-mode: luminosity; ">
+
+                                     <img src="https://s.yimg.com/fz/api/res/1.2/bfhuQx02Fd0qgLXZbH1dww--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI0MDtxPTgwO3c9MjQw/https://s.yimg.com/zb/imgv1/ff6c2336-05c2-34bf-8d42-c8eb48fbacf1/t_500x300"class="img-fluid" style="height:30px;width: 30px; mix-blend-mode: luminosity; ">
+
+                                     <img src="https://s.yimg.com/fz/api/res/1.2/KP2EdwGAFJgMIa76VW24Lw--~C/YXBwaWQ9c3JjaGRkO2g9MTQ0O3E9ODA7dz0xNDQ-/https://s.yimg.com/zb/imgv1/e9d6381f-6a16-39d9-b6f9-1467838c022c/t_500x300"class="img-fluid" style="height:30px;width: 30px; mix-blend-mode: luminosity; ">
+
+                                     <img src="https://s.yimg.com/fz/api/res/1.2/KM9SnyJw8zrTQQC3gTcToQ--~C/YXBwaWQ9c3JjaGRkO2g9MTQ0O3E9ODA7dz0xNDQ-/https://s.yimg.com/zb/imgv1/efe0eda0-a368-3325-8975-d7ae7a783e4c/t_500x300"class="img-fluid" style="height:30px;width: 30px; mix-blend-mode: luminosity; ">
+                                    </div>
+                                      <div class="d-flex gap-2 mt-5 last-link" style="flex-wrap: wrap;">            
+                                          <a href="#">Legal</a>
+                                          <a href="#">Privacy</a>
+                                          <a href="#">Accessibility</a>
+                                          <a href="#">Terms and conditions</a>
+                                          <a href="#">Sales and Service Tax</a>
+                                          <a href="#">Malaysian e-Invoice</a>
+                                      </div>
+                                  </div>
+                              </div> 
+                           </div>
+                  
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Watch</title>
+
+    <style>
+        *{
+            background-image:url("https://images.pexels.com/photos/17179604/pexels-photo-17179604.jpeg") ;
+            
+             
+        }
+        body {
+           display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #watch {
+            position: relative;
+            width: 30em;
+            height: 30em;
+            font-size: 1em;
+        }
+
+   
+
+        .digits {
+            list-style: none;
+       
+        }
+
+        .digits li {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1.6em;
+            height: 1.6em;
+            margin: -0.8em;
+            color: white;
+            font-size: 1.6em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.6em;
+        }
+
+        .digits li:nth-child(1) {
+            transform: translate(3.9em, -6.9em);
+        }
+
+        .digits li:nth-child(2) {
+            transform: translate(6.9em, -4em);
+        }
+
+        .digits li:nth-child(3) {
+            transform: translate(8em, 0);
+        }
+
+        .digits li:nth-child(4) {
+            transform: translate(6.8em, 4em);
+        }
+
+        .digits li:nth-child(5) {
+            transform: translate(3.9em, 6.9em);
+        }
+
+        .digits li:nth-child(6) {
+            transform: translate(0, 8em);
+        }
+
+        .digits li:nth-child(7) {
+            transform: translate(-3.9em, 6.9em);
+        }
+
+        .digits li:nth-child(8) {
+            transform: translate(-6.8em, 4em);
+        }
+
+        .digits li:nth-child(9) {
+            transform: translate(-8em, 0);
+        }
+
+        .digits li:nth-child(10) {
+            transform: translate(-6.9em, -4em);
+        }
+
+        .digits li:nth-child(11) {
+            transform: translate(-3.9em, -6.9em);
+        }
+
+        .digits li:nth-child(12) {
+            transform: translate(0, -8em);
+        }
+
+        .hours-hand,
+        .minutes-hand,
+        .seconds-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+        }
+
+        .hours-hand {
+            width: 0.8em;
+            height: 7em;
+            background: #232425;
+            border-radius: 10px;
+            margin: 0 0 -0.8em -0.4em;
+            transform-origin: 0.4em 6.2em;
+            transform: rotate(-25deg);
+            animation: hours 43200s linear infinite;
+        }
+
+        .minutes-hand {
+            width: 0.8em;
+            height: 12.5em;
+            background: #343536;
+            border-radius: 10px;
+            margin: 0 0 -1.5em -0.4em;
+            transform-origin: 0.4em 11em;
+            transform: rotate(62deg);
+            animation: minutes 3600s linear infinite;
+        }
+
+        .seconds-hand {
+            width: 0.2em;
+            height: 14em;
+            background: #c00;
+            border-radius: 10px;
+            margin: 0 0 -2em -0.1em;
+            transform-origin: 0.1em 12em;
+            transform: rotate(120deg);
+            animation: seconds 60s steps(60, end) infinite;
+        }
+
+        .seconds-hand::after {
+            content: "";
+            position: absolute;
+            width: 1.4em;
+            height: 1.4em;
+            background: #c00;
+            border-radius: 50%;
+            left: -0.65em;
+            bottom: 1.35em;
+        }
+
+        @keyframes hours {
+            to {
+                transform: rotate(335deg);
+            }
+        }
+
+        @keyframes minutes {
+            to {
+                transform: rotate(422deg);
+            }
+        }
+
+        @keyframes seconds {
+            to {
+                transform: rotate(480deg);
+            }
+        }
+        body {
+    animation: colo 3s;
+}
+
+@keyframes colo {
+    5% {
+        transform: rotateY(180deg);
+    }
+
+    50% {
+        transform: translateY(-1000px);
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="watch">
+
+        <div class="frame-face"></div>
+
+        <ul class="digits">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+        </ul>
+
+        <div class="hours-hand"></div>
+        <div class="minutes-hand"></div>
+        <div class="seconds-hand"></div>
+
+    </div>
+
+</body>
+
+</html>
